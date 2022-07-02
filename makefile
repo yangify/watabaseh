@@ -6,5 +6,5 @@ up:
 down:
 	$(DC) down --remove-orphan
 
-rebuild-spring:
+rebuild-service:
 	$(DC) up -d --build service
