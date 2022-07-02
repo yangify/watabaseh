@@ -5,7 +5,7 @@
 FROM maven:latest AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
-RUN mvn -f /home/app/pom.xml clean package
+RUN --mount=type=cache,target=/root/.m2 mvn -f /home/app/pom.xml clean package -Dmaven.test.skip -DskipFormatCode=true
 
 #
 # Package stage
