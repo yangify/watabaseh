@@ -19,6 +19,7 @@
     <properties>
         <java.version>11</java.version>
         <git-code-format-maven-plugin.version>3.4</git-code-format-maven-plugin.version>
+        <skipFormatCode>false</skipFormatCode>
     </properties>
 
     <dependencies>
@@ -74,6 +75,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <skip>${skipFormatCode}</skip>
+                </configuration>
             </plugin>
 
             <plugin>
