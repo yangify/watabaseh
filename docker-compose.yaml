@@ -2,9 +2,9 @@ services:
 
   service:
     container_name: watabaseh-service
-    build: .
     image: service:latest
     restart: on-failure
+    build: .
     ports:
       - 8080:8080
       - 8000:8000
