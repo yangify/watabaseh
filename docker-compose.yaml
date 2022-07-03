@@ -1,9 +1,9 @@
 services:
 
   # Springboot
-  service:
+  web:
     container_name: watabaseh-service
-    image: service:latest
+    image: watabaseh/springboot:latest
     restart: on-failure
     build: .
     ports:
