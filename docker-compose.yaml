@@ -13,8 +13,7 @@ services:
 
   database:
     container_name: watabaseh-database
-    image: mysql:latest
-    platform: linux/amd64
+    image: arm64v8/mysql:oracle
     ports:
       - 3306:3306
     environment:
