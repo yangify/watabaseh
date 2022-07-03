@@ -59,6 +59,7 @@
 
     <build>
         <plugins>
+            <!-- Springboot Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -72,6 +73,7 @@
                 </configuration>
             </plugin>
 
+            <!-- Code format Plugin -->
             <plugin>
                 <groupId>com.cosium.code</groupId>
                 <artifactId>git-code-format-maven-plugin</artifactId>
