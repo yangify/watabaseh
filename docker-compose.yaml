@@ -30,6 +30,8 @@ services:
     image: liquibase/liquibase
     platform: linux/arm64/v8
     command: --defaultsFile=./changelog/liquibase.properties update
+    environment:
+      - INSTALL_MYSQL=true
     volumes:
       - ./liquibase/changelog:/liquibase/changelog
       - ./liquibase/scripts:/liquibase/scripts
