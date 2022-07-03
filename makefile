@@ -6,5 +6,5 @@ up:
 down:
 	$(DC) down --remove-orphan
 
-rebuild-service:
+service:
 	$(DC) up -d --build service
