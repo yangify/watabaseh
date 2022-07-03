@@ -28,9 +28,10 @@ services:
   liquibase:
     container_name: watabaseh-liquibase
     image: liquibase/liquibase
-    command: --defaultsFile=/liquibase/liquibase.properties update
+    platform: linux/arm64/v8
+    command: --defaultsFile=./changelog/liquibase.properties update
     volumes:
-      - ./liquibase/changelog.xml:/liquibase/changelog.xml
+      - ./liquibase/changelog:/liquibase/changelog
       - ./liquibase/scripts:/liquibase/scripts
     depends_on:
       - database
