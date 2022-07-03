@@ -1,5 +1,6 @@
 services:
 
+  # Springboot
   service:
     container_name: watabaseh-service
     image: service:latest
@@ -11,6 +12,7 @@ services:
     depends_on:
       - database
 
+  # MySql
   database:
     container_name: watabaseh-database
     image: arm64v8/mysql:oracle
@@ -21,3 +23,14 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+
+  # Liquibase
+  liquibase:
+    container_name: watabaseh-liquibase
+    image: liquibase/liquibase
+    command: --defaultsFile=/liquibase/liquibase.properties update
+    volumes:
+      - ./liquibase/changelog.xml:/liquibase/changelog.xml
+      - ./liquibase/scripts:/liquibase/scripts
+    depends_on:
+      - database
