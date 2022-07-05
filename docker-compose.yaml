@@ -29,10 +29,11 @@ services:
     container_name: watabaseh-liquibase
     image: liquibase/liquibase
     platform: linux/arm64/v8
-    command: --defaultsFile=./changelog/liquibase.properties update
+    command: --defaultsFile=/liquibase/liquibase.docker.properties update
     environment:
       - INSTALL_MYSQL=true
     volumes:
+      - ./liquibase/liquibase.docker.properties:/liquibase/liquibase.docker.properties
       - ./liquibase/changelog:/liquibase/changelog
       - ./liquibase/scripts:/liquibase/scripts
     depends_on:
