@@ -2,7 +2,7 @@
 #
 # Build stage
 #
-FROM maven:latest AS build
+FROM arm64v8/maven:3-openjdk-11 AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
 RUN --mount=type=cache,target=/root/.m2 mvn -f /home/app/pom.xml clean package -Dmaven.test.skip -DskipFormatCode=true
@@ -10,7 +10,7 @@ RUN --mount=type=cache,target=/root/.m2 mvn -f /home/app/pom.xml clean package -
 #
 # Package stage
 #
-FROM openjdk:11
+FROM arm64v8/openjdk:11-oracle
 COPY --from=build /home/app/target/watabaseh-*.jar /usr/local/lib/watabaseh-*.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000", "-jar", "/usr/local/lib/watabaseh-*.jar"]
