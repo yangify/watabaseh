@@ -10,7 +10,8 @@ services:
       - 8080:8080
       - 8000:8000
     depends_on:
-      - database
+      database:
+        condition: service_healthy
 
   # MySql
   database:
@@ -23,12 +24,16 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      retries: 10
+      timeout: 10s
+      interval: 1s
 
   # Liquibase
   liquibase:
     container_name: watabaseh-liquibase
     image: liquibase/liquibase
-    platform: linux/arm64/v8
     command: --defaultsFile=/liquibase/liquibase.docker.properties update
     environment:
       - INSTALL_MYSQL=true
@@ -37,4 +42,5 @@ services:
       - ./liquibase/changelog:/liquibase/changelog
       - ./liquibase/scripts:/liquibase/scripts
     depends_on:
-      - database
+      database:
+        condition: service_healthy
