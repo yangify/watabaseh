@@ -7,7 +7,7 @@ build:
 	$(DC) build -d
 
 down:
-	$(DC) down --remove-orphan
+	$(DC) down --remove-orphan && docker volume prune -f
 
 service:
 	$(DC) up -d --build service
